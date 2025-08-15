@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oceanic</title>
+<link rel="icon" type="image/png" href="logotipo.jpg.png">
+<script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #0066cc;
+            --secondary: #66ccff;
+            --accent: #00cc99;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            background-attachment: fixed;
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #003366;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, p, span, a {
+    color: #424955 !important;
+}
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .navbar {
+            backdrop-filter: blur(8px);
+            background: rgba(0, 255, 255, 0.253);
+            text-align: center;
+        }
+
+        .navbar a,
+.navbar ul li a {
+    color: var(--secondary) !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+footer,
+footer a,
+footer p {
+    color: var(--secondary) !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+        
+        .logo-img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;  /* Garante que a imagem se encaixe sem distorcer */
+    display: block;
+    margin: 0 auto;        /* Centraliza horizontalmente */
+        }
+        
+        @media (max-width: 640px) {
+            .logo-img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
+        .card {
+            background: rgb(0, 0, 0);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.05) rotate(1deg);
+            box-shadow: 0 25px 50px rgb(0, 0, 0, 0.5);
+        }
+        
+        .menu-btn {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-btn span {
+            position: absolute;
+            height: 3px;
+            width: 80%;
+            background: rgb(22, 22, 22);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-btn span:nth-child(1) {
+            top: 0;
+        }
+        
+        .menu-btn span:nth-child(2),
+        .menu-btn span:nth-child(3) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .menu-btn span:nth-child(4) {
+            bottom: 0;
+        }
+        
+        .menu-btn.open span:nth-child(1),
+        .menu-btn.open span:nth-child(4) {
+            opacity: 0;
+        }
+        
+        .menu-btn.open span:nth-child(2) {
+            transform: translateY(-50%) rotate(45deg);
+        }
+        
+        .menu-btn.open span:nth-child(3) {
+            transform: translateY(-50%) rotate(-45deg);
+        }
+        
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .shark-robot {
+  height: 400px;
+  width: auto;
+}
+
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .partner-logo {
+            filter: grayscale(100%) brightness(200%);
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0%) brightness(100%);
+            transform: scale(1.1);
+        }
+        
+        .banner {
+            animation: slideIn 1s ease-out;
+        }
+
+        .estatistica-importantes {
+          color: #ffffff;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 p-4 flex justify-between items-center shadow-lg">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center">
+            <img src="logotipo.jpg.png" alt="Logo Tubarão News" class="logo-img mr-2 rounded-full">
+            <span class="text-xl font-bold">Oceanic</span>
+        </a>
+        
+        <!-- Menu Button -->
+        <div class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu absolute top-16 right-4 bg-gray-800 rounded-lg shadow-xl p-4 w-48">
+            <a href="#home" class="block py-2 hover:text-cyan-400 transition">Home</a>
+            <a href="#about" class="block py-2 hover:text-cyan-400 transition">Sobre</a>
+            <a href="#species" class="block py-2 hover:text-cyan-400 transition">Espécies</a>
+            <a href="#conservation" class="block py-2 hover:text-cyan-400 transition">Conservação</a>
+            <a href="#contact" class="block py-2 hover:text-cyan-400 transition">Contato</a>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner max-w-6xl mx-auto mt-24 mb-12 overflow-hidden rounded-xl">
+        <img src="banner.jpg" alt="Banner animado com vários tubarões nadando em um recife de corais coloridos" class="w-full">
+    </div>
+
+    <!-- Shark Robot Welcome -->
+    <div id="home" class="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
+        <div class="shark-robot w-56 h-56 md:w-64 md:h-64 mb-8 md:mb-0 flex items-center justify-center">
+  <img src="mordendo.gif" alt="GIF de tubarão animado" class="max-h-full max-w-full">
+</div>
+
+        <div class="text-center md:text-left max-w-2xl">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Bem-vindo a Oceanic!</h1>
+            <p class="text-lg md:text-xl mb-6">Seu portal completo sobre o incrível mundo dos tubarões. Aqui você encontra informações detalhadas sobre diversas espécies, curiosidades, fotos incríveis e notícias sobre conservação marinha.</p>
+            <a href="#species" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-100 transition inline-block">Explorar Espécies</a>
+        </div>
+    </div>
+
+    <!-- Shark Cards -->
+    <section id="species" class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Conheça as Espécies</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraobranco.jpg" alt="Tubarão branco" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-branco</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharodon carcharias</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 1.100 kg</li>
+    <li><strong>Comprimento:</strong> Até 6 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes triangulares, serrilhados e substituíveis</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso (sem ossos)</li>
+    <li><strong>Oceano/Região:</strong> Oceanos Atlântico, Pacífico e Índico</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraobaleia.jpg" alt="Tubarão baleia" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-baleia</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Rhincodon typus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 14 Toneladas</li>
+    <li><strong>Comprimento:</strong> 5,5 a 10 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes pequenos e filtradores</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Tropicais de todo o mundo</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraomartelogrande.jpg" alt="Tubarão martelo grande" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-martelo-grande</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Sphyrna mokarran</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 450 kg</li>
+    <li><strong>Comprimento:</strong> Até 6 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes triangulares e lisos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Tropicais e subtropicais, perto da costa</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraotigre.jpg" alt="Tubarão tigre" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-tigre</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Galeocerdo cuvier</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 600 kg</li>
+    <li><strong>Comprimento:</strong> Até 5,5 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes largos, serrilhados e recurvados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Tropicais e subtropicais do mundo todo</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraolixa.jpg" alt="Tubarão-lixa" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-lixa</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Ginglymostoma cirratum</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 110 kg</li>
+    <li><strong>Comprimento:</strong> Até 4 metros</li>
+    <li><strong>Arcada dentária:</strong> Pequenos e curvados para dentro</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Atlântico Ocidental e Caribe</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraoazul.jpg" alt="Tubarão-azul" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-azul</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Prionace glauca</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 200 kg</li>
+    <li><strong>Comprimento:</strong> Até 3,8 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes finos, serrilhados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Oceano Atlântico, Pacífico e Índico</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraoduende.webp" alt="Tubarão-duende" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-duende</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Mitsukurina owstoni</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 210 kg</li>
+    <li><strong>Comprimento:</strong> Até 4 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes finos e longos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas profundas do Japão, Golfo do México e Atlântico</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraocobra.jpg" alt="Tubarão-cobra" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-cobra</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Chlamydoselachus anguineus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 25 kg</li>
+    <li><strong>Comprimento:</strong> Até 2 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes curvos e em fileiras</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas profundas do Atlântico e Pacífico</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraoserra.jpg" alt="Tubarão-serra" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-serra</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Pristiophorus cirratus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 18 kg</li>
+    <li><strong>Comprimento:</strong> Até 1,5 metro</li>
+    <li><strong>Arcada dentária:</strong> Pequenos e pontiagudos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Austrália e Japão</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraomako.jpg" alt="Tubarão-mako" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-mako</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Isurus oxyrinchus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 400 kg</li>
+    <li><strong>Comprimento:</strong> Até 4 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes longos e afiados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Oceanos temperados e tropicais</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraoenfermeiro.webp" alt="Tubarão-enfermeiro-cinzento" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-enfermeiro-cinzento</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Ginglymostoma cirratum</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 90 kg</li>
+    <li><strong>Comprimento:</strong> Até 4,3 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes pequenos e curvados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Atlântico Ocidental e Mar do Caribe</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraocinzentorecife.jpg" alt="Tubarão-cinzento-do-recife" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-cinzento-do-recife</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharhinus amblyrhynchos</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 35 kg</li>
+    <li><strong>Comprimento:</strong> Até 2,5 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes triangulares e serrilhados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Indo-Pacífico tropical</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraodepontaspretas.jpg" alt="Tubarão-de-pontas-negras" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-de-pontas-negras</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharhinus limbatus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 40 kg</li>
+    <li><strong>Comprimento:</strong> Até 2,7 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes estreitos e recurvados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas costeiras tropicais</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraolanterna.jpg" alt="Tubarão-lanterna" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-lanterna</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Etmopterus spinax</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 1 kg</li>
+    <li><strong>Comprimento:</strong> Até 60 cm</li>
+    <li><strong>Arcada dentária:</strong> Dentes finos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Atlântico Norte e Mar Mediterrâneo</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraofrade.jpg" alt="Tubarão-frade" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-frade</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Cephaloscyllium ventriosum</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 5 kg</li>
+    <li><strong>Comprimento:</strong> Até 1 metro</li>
+    <li><strong>Arcada dentária:</strong> Pequenos e lisos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Pacífico Oriental</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraotouro.jpg" alt="Tubarão-touro" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-touro</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharhinus leucas</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 300 kg</li>
+    <li><strong>Comprimento:</strong> Até 3,5 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes largos e serrilhados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Costas tropicais e rios (água doce e salgada)</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="cinzentoatlantico.jpg" alt="Tubarão-cinzento-do-Atlântico" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-cinzento-do-Atlântico</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharhinus plumbeus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 160 kg</li>
+    <li><strong>Comprimento:</strong> Até 3 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes triangulares</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Atlântico, especialmente o Golfo do México</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="requiem.jpg" alt="Tubarão-de-requiem" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-de-requiem</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharhinidae (família)</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Varia por espécie</li>
+    <li><strong>Comprimento:</strong> 1 a 4 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes triangulares</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Tropicais e subtropicais</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="cobre.jpg" alt="Tubarão-cobre" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-cobre</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharhinus brachyurus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 280 kg</li>
+    <li><strong>Comprimento:</strong> Até 3,3 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes lisos e longos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Costas temperadas</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraogato.jpg" alt="Tubarão-gato" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-gato</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Scyliorhinidae (família)</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 1–3 kg</li>
+    <li><strong>Comprimento:</strong> Até 1 metro</li>
+    <li><strong>Arcada dentária:</strong> Pequenos e curvados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Atlântico e Pacífico</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="cervo.jpg" alt="Tubarão-cervo" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-cervo</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Centrophorus granulosus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Até 15 kg</li>
+    <li><strong>Comprimento:</strong> Até 1,5 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes pontiagudos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Atlântico, Pacífico e Índico</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="raposa.jpg" alt="Tubarão-raposa" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-raposa</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Alopias vulpinus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Até 500 kg</li>
+    <li><strong>Comprimento:</strong> Até 6 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes pequenos e pontudos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas tropicais e temperadas</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraomartelo.jpg" alt="Tubarão-martelo" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-martelo</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Sphyrna mokarran</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> 230–450 kg</li>
+    <li><strong>Comprimento:</strong> Até 6 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes triangulares e serrilhados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Tropicais e subtropicais ao redor do mundo</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="charuto.jpg" alt="Tubarão-charuto" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-charuto</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Isistius brasiliensis</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Cerca de 2 kg</li>
+    <li><strong>Comprimento:</strong> Até 56 cm</li>
+    <li><strong>Arcada dentária:</strong> Dentes inferiores grandes e afiados, usados para arrancar pedaços circulares</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas oceânicas tropicais e subtropicais, em mar aberto e profundezas</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="groelandiaa.jpg" alt="Tubarão-da-Groelândia" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-da-Groelândia</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Somniosus microcephalus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Até 1.000 kg</li>
+    <li><strong>Comprimento:</strong> Até 6,4 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes pequenos e afiados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas frias do Ártico e Atlântico Norte</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="shysharkmarrom.jpg" alt="Shyshark marrom" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Shyshark marrom</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Haploblepharus fuscus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Aproximadamente 3 kg</li>
+    <li><strong>Comprimento:</strong> Até 1 metro</li>
+    <li><strong>Arcada dentária:</strong> Pequenos dentes afiados, adaptados para capturar pequenos peixes e invertebrados</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Costas rochosas da África do Sul</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="Tubarãobaleeiro.jpg" alt="Tubarão-baleeiro-de-bronze" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-baleeiro-de-bronze</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharhinus brachyurus</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Até 70 kg</li>
+    <li><strong>Comprimento:</strong> Até 2,5 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes com bordas serrilhadas, adaptados para capturar peixes</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas costeiras do Atlântico Sul e Pacífico Ocidental</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="galapagos.jpg" alt="Tubarão-de-Galápagos" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-de-Galápagos</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Carcharhinus galapagensis</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Até 60 kg</li>
+    <li><strong>Comprimento:</strong> Até 3 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes triangulares, afiados, com bordas serrilhadas</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas tropicais do Pacífico, especialmente ao redor das Ilhas Galápagos</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="leopardo.jpg" alt="Tubarão-leopardo" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-leopardo</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Triakis semifasciata</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Até 18 kg</li>
+    <li><strong>Comprimento:</strong> Até 2 metros</li>
+    <li><strong>Arcada dentária:</strong> Dentes pequenos e achatados, ideais para esmagar crustáceos e moluscos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Costa oeste da América do Norte, especialmente Califórnia</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraoanjo.jpg" alt="Tubarão-anjo" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-anjo</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Squatina squatina</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Até 80 kg</li>
+    <li><strong>Comprimento:</strong> Até 2,4 metros</li>
+    <li><strong>Arcada dentária:</strong> Pequenos dentes pontiagudos, adequados para capturar presas no fundo do mar</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Costas do Atlântico Nordeste e Mar Mediterrâneo</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraocrocodilo.jpg" alt="Tubarão-crocodilo" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-crocodilo</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Pseudocarcharias kamoharai</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> Até 15 kg</li>
+    <li><strong>Comprimento:</strong> Até 1,1 metro</li>
+    <li><strong>Arcada dentária:</strong> Dentes grandes, longos e pontiagudos, lembrando os de crocodilos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas tropicais e subtropicais do mundo todo, em mar profundo</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="pontasbrancas.jpg" alt="Tubarão-de-pontas-brancas-oceânico" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-pontas-brancas</h3>
+  <p class="text-sm text-gray-600 italic mb-1">
+    Nome científico: <strong>Carcharhinus limbatus</strong>
+  </p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> ~60–123 kg (máximo ~123 kg)</li>
+    <li><strong>Comprimento:</strong> 1,5 m comum; até 2,8 m registrado</li>
+    <li><strong>Arcada dentária:</strong> ~15 dentes por lado, cima com cusp serrilhado, baixo mais curvado</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Tropicais e subtropicais dos oceanos Atlântico, Índico e Pacífico; costeiro, estuários e recifes</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraorecife.jpg" alt="Tubarão-de-recife-do-Caribe" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão‑de‑recife</h3>
+  <p class="text-sm text-gray-600 italic mb-1">
+    Nome científico: <strong>Carcharhinus acronotus</strong>
+  </p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> ~13 kg (max ~13,6 kg)</li>
+    <li><strong>Comprimento:</strong> até 1,6 m, excepcionalmente até 1,8–2,0 m</li>
+    <li><strong>Arcada dentária:</strong> dentes triangulares com serrilhas finas; padrão 11–13 linhas superiores e 10–12 inferiores</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Atlântico Ocidental — zona costeira tropical e subtropical</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraobabado.jpg" alt="Tubarão-de-babados" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão‑de‑babados</h3>
+  <p class="text-sm text-gray-600 italic mb-1">
+    Nome científico: <strong>Chlamydoselachus anguineus</strong>
+  </p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> ~25 kg (estimativa comum)</li>
+    <li><strong>Comprimento:</strong> até ~2 m</li>
+    <li><strong>Arcada dentária:</strong> ~300 dentes em 25 filas tridentadas voltadas para trás </li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Águas profundas do Atlântico e Pacífico, zonas abissais</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraosalmao.jpg" alt="Tubarão-salmão" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão‑salmão</h3>
+  <p class="text-sm text-gray-600 italic mb-1">Nome científico: <strong>Lamna ditropis</strong></p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> até cerca de 220 kg (excepcionalmente até ~175–454 kg)</li>
+    <li><strong>Comprimento:</strong> geralmente 200–260 cm (2,0–2,6 m); máximo confirmado ~3,05 m</li>
+    <li><strong>Arcada dentária:</strong> dentes grandes, em forma de lâmina, com cusp principal e pequenas cúspides laterais (cusplets)</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Pacífico Norte temperado a subártico; desde o mar de Bering até Baja Califórnia, costa do Japão até Golfo do Alasca</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraosardo.jpg" alt="Tubarão‑sardo" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão‑sardo</h3>
+  <p class="text-sm text-gray-600 italic mb-1">
+    Nome científico: <strong>Lamna nasus</strong>
+  </p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> até ~230 kg (máximo registrado)</li>
+    <li><strong>Comprimento:</strong> geralmente 2–3,6 m; excepcionalmente até ~3,7 m</li>
+    <li><strong>Arcada dentária:</strong> dentes pequenos, lisos e estreitos com cúspides laterais, formato tridentado</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Água fria e temperada em ambos os hemisférios: Atlântico Norte (EUA, Canadá, Islândia, Mediterrâneo), Atlântico Sul, Pacífico (Chile, Austrália), Índico e Oceano Antártico</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraoseda.jpg" alt="Tubarão-sedoso" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão-sedoso</h3>
+  <p class="text-sm text-gray-600 italic mb-1">
+    Nome científico: <strong>Carcharhinus falciformis</strong>
+  </p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> até 160 kg</li>
+    <li><strong>Comprimento:</strong> geralmente 2 a 2,5 m; podendo atingir até 3,3 m</li>
+    <li><strong>Arcada dentária:</strong> dentes superiores triangulares e serrilhados; inferiores mais estre </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="tubaraozebra.jpg" alt="Tubarão‑zebra" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Tubarão‑zebra</h3>
+  <p class="text-sm text-gray-600 italic mb-1">
+    Nome científico: <strong>Stegostoma tigrinum</strong>
+  </p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> cerca de 20–30 kg (até ~30 kg)</li>
+    <li><strong>Comprimento:</strong> geralmente 2–2,5 m, excepcionalmente até ~3 m ou 3,7 m</li>
+    <li><strong>Arcada dentária:</strong> 28–33 fileiras de dentes superiores, 22–32 inferiores; cada dente com cúspide central e duas cúspides laterais</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso</li>
+    <li><strong>Oceano/Região:</strong> Indo‑Pacífico tropical; habitam recifes de coral, fundos arenosos e plataformas continentais até ~62 m</li>
+  </ul>
+</div>
+<div class="card p-6 bg-white rounded-xl shadow-md max-w-md mx-auto mb-6">
+  <div class="card-image mb-4">
+    <img src="megalodonte.jpg" alt="Megalodon" class="w-full h-48 object-cover rounded-lg">
+  </div>
+  <h3 class="text-2xl font-bold text-gray-800 mb-2">Megalodon</h3>
+  <p class="text-sm text-gray-600 italic mb-1">
+    Nome científico: <strong>Otodus megalodon</strong>
+  </p>
+  <ul class="text-sm text-gray-700 space-y-1">
+    <li><strong>Peso médio:</strong> estimado entre 50–100 toneladas</li>
+    <li><strong>Comprimento:</strong> até 18 metros (algumas estimativas sugerem até 20 metros)</li>
+    <li><strong>Arcada dentária:</strong> dentes triangulares com até 18 cm, serrilhados e extremamente robustos</li>
+    <li><strong>Esqueleto:</strong> Cartilaginoso (como os demais tubarões)</li>
+    <li><strong>Oceano/Região:</strong> Cosmopolita – viveu em todos os oceanos tropicais e temperados do mundo</li>
+  </ul>
+</div>
+
+</div>
+<!-- Fim dos cards gerados automaticamente -->
+
+    </section>
+
+    <!-- Conservation Section -->
+    <section id="conservation" class="container mx-auto px-4 py-12 bg-white bg-opacity-10 backdrop-blur-lg rounded-xl my-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Conservação dos Tubarões</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Ameaças</h3>
+                <ul class="space-y-2 mb-8">
+                    <li class="flex items-start">
+                        <span class="inline-block bg-red-500 rounded-full w-5 h-5 mr-2 mt-1"></span>
+                        <span>Caça excessiva para fins comerciais (nadadeiras)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="inline-block bg-red-500 rounded-full w-5 h-5 mr-2 mt-1"></span>
+                        <span>Pesca acidental (bycatch) em redes de pesca</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="inline-block bg-red-500 rounded-full w-5 h-5 mr-2 mt-1"></span>
+                        <span>Degradação de habitat e poluição dos oceanos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="inline-block bg-red-500 rounded-full w-5 h-5 mr-2 mt-1"></span>
+                        <span>Mudanças climáticas afetando ecossistemas marinhos</span>
+                    </li>
+                </ul>
+                
+                <h3 class="text-2xl font-bold mb-4">Como Ajudar</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <span class="inline-block bg-green-500 rounded-full w-5 h-5 mr-2 mt-1"></span>
+                        <span>Evite consumir produtos derivados de tubarão</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="inline-block bg-green-500 rounded-full w-5 h-5 mr-2 mt-1"></span>
+                        <span>Apoie organizações de conservação marinha</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="inline-block bg-green-500 rounded-full w-5 h-5 mr-2 mt-1"></span>
+                        <span>Eduque outros sobre a importância dos tubarões</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="inline-block bg-green-500 rounded-full w-5 h-5 mr-2 mt-1"></span>
+                        <span>Reduza seu consumo de plástico</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-blue-900 bg-opacity-50 rounded-xl p-6">
+                <h3 class="text-2xl font-bold mb-4 text-center">Estatísticas Importantes</h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Espécies ameaçadas</span>
+                            <span class="font-bold">75%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-red-600 h-2.5 rounded-full" style="width: 75%"></div>
+                        </div>
+                        <p class="text-xs text-gray-300 mt-1">* Cerca de 75% das espécies de tubarão oceânico estão ameaçadas de extinção</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Populações declinando</span>
+                            <span class="font-bold">71%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-orange-500 h-2.5 rounded-full" style="width: 71%"></div>
+                        </div>
+                        <p class="text-xs text-gray-300 mt-1">* Declínio global de 71% em populações de tubarões desde 1970</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Tubarões mortos anualmente</span>
+                            <span class="font-bold">100 milhões</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-purple-500 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p class="text-xs text-gray-300 mt-1">* Estima-se que 100 milhões de tubarões são mortos por humanos a cada ano</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Creator -->
+    <section id="about" class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Sobre o Criador</h2>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8 max-w-4xl mx-auto">
+            <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                <img src="thiago.jpg" alt="Foto do criador do site, um biólogo marinho sorrindo com roupa de mergulho, segurando prancheta de pesquisa" class="w-full h-full object-cover">
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-2xl font-bold mb-2">Thiago Martins Santos</h3>
+                <p class="text-xl text-cyan-300 mb-4">Autista com hiperfoco em tubarões</p>
+                <p class="mb-4">Pessoa autista com hiperfoco em tubarões, apaixonado pela vida marinha e protetor dos oceanos, sempre buscando formas de alertar as pessoas sobre o assunto.</p>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="#" class="text-white hover:text-cyan-300 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-cyan-300 transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white hover:text-cyan-300 transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-white hover:text-cyan-300 transition"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+<section class="container mx-auto px-4 py-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Nossos Parceiros</h2>
+    <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+
+        <!-- National Geographic -->
+        <div class="partner-logo w-32 h-32">
+            <img src="national.png" 
+                 alt="Logo da National Geographic Society" 
+                 class="w-full h-full object-contain">
+        </div>
+
+        <!-- Ocearch -->
+        <div class="partner-logo w-32 h-32">
+            <img src="ocearch.jpg" 
+                 alt="Logo da Ocearch - Pesquisa e Conservação Marinha" 
+                 class="w-full h-full object-contain">
+        </div>
+
+        <!-- CEBImar USP -->
+        <div class="partner-logo w-32 h-32">
+            <img src="usp.png" 
+                 alt="Logo do CEBImar USP - Centro de Biologia Marinha" 
+                 class="w-full h-full object-contain">
+        </div>
+
+        <!-- IEAPM -->
+        <div class="partner-logo w-32 h-32">
+            <img src="ieapm.png" 
+                 alt="Logo do IEAPM - Instituto de Estudos do Mar Almirante Paulo Moreira" 
+                 class="w-full h-full object-contain">
+        </div>
+
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto px-4 py-12 bg-white bg-opacity-10 rounded-xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Entre em Contato</h2>
+        <form class="max-w-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="name" class="block mb-2 font-medium">Nome</label>
+                    <input type="text" id="name" class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                </div>
+                <div>
+                    <label for="email" class="block mb-2 font-medium">Email</label>
+                    <input type="email" id="email" class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                </div>
+            </div>
+            <div class="mt-6">
+                <label for="subject" class="block mb-2 font-medium">Assunto</label>
+                <input type="text" id="subject" class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+            </div>
+            <div class="mt-6">
+                <label for="message" class="block mb-2 font-medium">Mensagem</label>
+                <textarea id="message" rows="5" class="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+            </div>
+            <button type="submit" class="mt-6 bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 rounded-lg transition w-full md:w-auto">Enviar Mensagem</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 bg-opacity-80 mt-12 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#home" class="flex items-center">
+                        <img src="news.jpg" alt="Pequeno logo do Tubarão News" class="mr-2 rounded-full">
+                        <span class="text-lg font-bold">Tubarão News</span>
+                    </a>
+                    <p class="mt-2 text-gray-400">© 2023 Todos os direitos reservados</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="social-icon text-gray-400 hover:text-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon text-gray-400 hover:text-white">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center md:text-left">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="#species" class="text-gray-400 hover:text-white transition">Espécies</a></li>
+                            <li><a href="#conservation" class="text-gray-400 hover:text-white transition">Conservação</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-white transition">Sobre</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Recursos</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Pesquisas</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Dados Científicos</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Educação</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                        <p class="text-gray-400 mb-4">Assine nossa newsletter para receber atualizações sobre tubarões e conservação marinha.</p>
+                        <div class="flex">
+                            <input type="email" placeholder="Seu email" class="px-4 py-2 rounded-l-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 w-full">
+                            <button class="bg-cyan-500 hover:bg-cyan-600 px-4 py-2 rounded-r-lg font-bold transition">Assinar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Menu Toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            dropdownMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.menu-btn') && !e.target.closest('.dropdown-menu')) {
+                menuBtn.classList.remove('open');
+                dropdownMenu.classList.remove('active');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close menu if open
+                menuBtn.classList.remove('open');
+                dropdownMenu.classList.remove('active');
+            });
+        });
+        
+        // Toggle "See More" buttons
+        document.querySelectorAll('.see-more-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const moreInfo = this.nextElementSibling;
+                moreInfo.classList.toggle('hidden');
+                
+                if (moreInfo.classList.contains('hidden')) {
+                    this.textContent = 'Veja mais';
+                } else {
+                    this.textContent = 'Mostrar menos';
+                }
+            });
+        });
+        
+        // Save scroll position on refresh
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+        
+        // Restore scroll position
+        window.addEventListener('load', () => {
+            const scrollPosition = sessionStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, scrollPosition);
+                sessionStorage.removeItem('scrollPosition');
+            }
+        });
+        
+        // Check if page was refreshed
+        if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+            // Page was reloaded
+        } else {
+            // Page was loaded normally
+            // Add fade-in animation to elements
+            document.querySelectorAll('.card, .banner, section').forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+                el.classList.add('fade-in');
+            });
+        }
+    </script>
+</body>
+</html>
